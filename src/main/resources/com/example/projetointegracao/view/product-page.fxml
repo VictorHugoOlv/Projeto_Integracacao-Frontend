@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="TOP_LEFT" prefHeight="399.0" prefWidth="399.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetointegracao.controllers.FrontController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Label prefHeight="17.0" prefWidth="108.0" text="Autor: Victor Hugo">
+      <VBox.margin>
+         <Insets />
+      </VBox.margin></Label>
+    <Separator prefWidth="200.0" />
+    <TitledPane fx:id="linesTitledPane" text="Linhas">
+        <AnchorPane minHeight="0.0" minWidth="0.0">
+            <ComboBox fx:id="lineComboBox" layoutX="123.0" layoutY="14.0" onAction="#initialize" prefHeight="25.0" prefWidth="170.0" />
+            <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" text="Selecione uma linha" />
+         <TitledPane animated="false" layoutX="-23.0" layoutY="-103.0" prefHeight="3.0" prefWidth="0.0" text="untitled">
+           <content>
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+           </content>
+         </TitledPane>
+        </AnchorPane>
+    </TitledPane>
+    <TitledPane fx:id="modelsTitledPane" animated="false" disable="true" expanded="false" text="Modelos">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="775.0">
+            <TreeView fx:id="categoriesWithProductsTreeView" prefHeight="200.0" prefWidth="775.0" />
+        </AnchorPane>
+    </TitledPane>
+</VBox>
