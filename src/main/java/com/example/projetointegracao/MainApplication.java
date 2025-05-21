@@ -4,10 +4,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.helper.DataBaseHelper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
 
+@SpringBootApplication
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -18,12 +21,9 @@ public class MainApplication extends Application {
         stage.show();
     }
 
-    @Override
-    public void stop() {
-        DataBaseHelper.getInstance().shutdown();
-    }
-
     public static void main(String[] args) {
+        ConfigurableApplicationContext context = SpringApplication.run(MainApplication.class, args);
         launch();
+        context.close();
     }
 }
