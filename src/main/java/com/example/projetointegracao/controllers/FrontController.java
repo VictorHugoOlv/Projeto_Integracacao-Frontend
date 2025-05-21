@@ -1,21 +1,21 @@
 package com.example.projetointegracao.controllers;
 
+import com.example.projetointegracao.dto.CategoryDTO;
+import com.example.projetointegracao.dto.LineDTO;
+import com.example.projetointegracao.dto.ProductDTO;
+import com.example.projetointegracao.services.CategoryService;
+import com.example.projetointegracao.services.LineService;
 import javafx.collections.FXCollections;
-import org.example.controllers.CategoryController;
-import org.example.controllers.LineController;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import org.example.models.Category;
-import org.example.models.Line;
-import org.example.models.Product;
-
 import java.util.*;
 
 public class FrontController {
-    LineController lineController = new LineController();
-    CategoryController categoryController = new CategoryController();
+    LineService lineService = new LineService();
+    CategoryService categoryService = new CategoryService();
+    List<LineDTO> lines;
 
     @FXML
     private TreeView<String> categoriesWithProductsTreeView;
@@ -24,7 +24,7 @@ public class FrontController {
     private TitledPane modelsTitledPane;
 
     @FXML
-    private ComboBox<Line> lineComboBox;
+    private ComboBox<LineDTO> lineComboBox;
 
     @FXML
     public void initialize() {
@@ -33,7 +33,7 @@ public class FrontController {
 
     private void setComboBoxLine() {
 
-        List<Line> lines = lineController.getAllLines();
+        lines = lineService.getAllLines();
 
         lineComboBox.setItems(FXCollections.observableArrayList(lines));
         lineComboBox.setPromptText("Selecione uma Linha");
@@ -42,13 +42,14 @@ public class FrontController {
 
     private void onItemSelectedLineCombo() {
 
-        Line selectedLine = lineComboBox
+        Long selectedLine = lineComboBox
                 .getSelectionModel()
-                .getSelectedItem();
+                .getSelectedItem()
+                .getId();
 
         if (selectedLine != null) {
             showCategoriesWithProducts();
-            buildCategoryProductTree(categoryController.getCategoriesByLine(selectedLine));
+            buildCategoryProductTree(categoryService.getCategoriesByLine(selectedLine));
         }
     }
 
@@ -57,16 +58,16 @@ public class FrontController {
         modelsTitledPane.setExpanded(true);
     }
 
-    private void buildCategoryProductTree(List<Category> categories) {
+    private void buildCategoryProductTree(List<CategoryDTO> categories) {
 
         TreeItem<String> root = new TreeItem<>("Categorias com Produtos");
         root.setExpanded(true);
 
-        for (Category category : categories) {
-            TreeItem<String> categoryItem = new TreeItem<>(category.getCategoryName());
-
-            for (Product product : category.getProducts()) {
-                categoryItem.getChildren().add(new TreeItem<>(product.getProductName()));
+        for (CategoryDTO category : categories) {
+            TreeItem<String> categoryItem = new TreeItem<>(category.getName());
+            List<ProductDTO> productList = category.getProducts();
+            for (ProductDTO product : productList) {
+                categoryItem.getChildren().add(new TreeItem<>(product.getName()));
             }
 
             root.getChildren().add(categoryItem);
