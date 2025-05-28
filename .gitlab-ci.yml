@@ -11,9 +11,6 @@ stages:
 
 before_script:
   - echo "Iniciando pipeline Spring Boot"
-  - echo "Maven Version: $MAVEN_VERSION"
-  - echo "MAVEN_HOME: $MAVEN_HOME"
-  - echo "JAVA_HOME: $JAVA_HOME"
 
 clean:
   stage: clean
