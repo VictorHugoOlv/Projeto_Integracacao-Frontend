@@ -1,4 +1,4 @@
-image: ghcr.io/felixlohmeier/javafx-maven:latest
+image: maven:3.6.3-jdk-11
 
 stages:
   - clean
