@@ -2,8 +2,8 @@ image: maven:3.6.3-jdk-8
 
 variables:
   MAVEN_VERSION: "3.6.3"
-  MAVEN_HOME: "/usr/share/maven"
-  JAVA_HOME: "/docker-java-home"
+  MAVEN_HOME: "/opt/maven"
+  JAVA_HOME: "/usr/lib/jvm/java-8-openjdk-amd64"
 
 stages:
   - clean
