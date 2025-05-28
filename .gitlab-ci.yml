@@ -1,8 +1,5 @@
 image: maven:3.6.3-jdk-8
 
-variables:
-  MAVEN_VERSION: "3.6.3"
-
 stages:
   - clean
   - package
@@ -12,6 +9,8 @@ before_script:
   - echo $MAVEN_VERSION
   - echo $MAVEN_HOME
   - echo $JAVA_HOME
+  - apt-get update
+  - apt-get install -y openjfx
 
 clean:
   stage: clean
