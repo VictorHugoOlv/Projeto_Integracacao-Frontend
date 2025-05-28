@@ -1,4 +1,9 @@
-image: maven:3.6.3-jdk-11
+image: maven:3.6.3-jdk-8
+
+variables:
+  MAVEN_VERSION: "3.6.3"
+  MAVEN_HOME: "/usr/share/maven"
+  JAVA_HOME: "/docker-java-home"
 
 stages:
   - clean
@@ -6,6 +11,9 @@ stages:
 
 before_script:
   - echo "Iniciando pipeline Spring Boot"
+  - echo "Maven Version: $MAVEN_VERSION"
+  - echo "MAVEN_HOME: $MAVEN_HOME"
+  - echo "JAVA_HOME: $JAVA_HOME"
 
 clean:
   stage: clean
