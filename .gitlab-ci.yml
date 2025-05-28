@@ -4,6 +4,7 @@ variables:
   MAVEN_VERSION: "3.6.3"
   MAVEN_HOME: "/opt/maven"
   JAVA_HOME: "/usr/lib/jvm/java-8-openjdk-amd64"
+  PATH: "$MAVEN_HOME/bin:$PATH"
 
 stages:
   - clean
