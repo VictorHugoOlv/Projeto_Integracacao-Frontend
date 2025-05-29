@@ -12,7 +12,6 @@ stages:
 before_script:
   - $env:PATH="$env:JAVA_HOME\bin;$env:MAVEN_HOME\bin;$env:PATH"
   - java -version
-  - mvn -version
 
 check:
   tags:
