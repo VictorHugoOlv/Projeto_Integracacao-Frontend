@@ -1,7 +1,7 @@
 variables:
   MAVEN_VERSION: "3.9.9"
-  MAVEN_HOME: "/opt/maven"
-  JAVA_HOME: "/usr/lib/jvm/java-8-openjdk-amd64"
+  MAVEN_HOME: "C:\\Program Files\\Apache\\Maven\\apache-maven-3.9.9"
+  JAVA_HOME: "C:\\Program Files\\Java\\jdk1.8.0_51"
 
 stages:
   - check
@@ -9,21 +9,17 @@ stages:
   - package
   - deploy
 
-#before_script:
-  #- echo "Iniciando pipeline Spring Boot"
-  #- echo $MAVEN_VERSION
-  #- echo $MAVEN_HOME
-  #- echo $JAVA_HOME
-  #- apt-get update
-  #- apt-get install -y openjfx
+before_script:
+  - set "PATH=%JAVA_HOME%\\bin;%MAVEN_HOME%\\bin;%PATH%"
+  - java -version
+  - mvn -version
 
 check:
   tags:
     - Shell-Maven
   stage: check
   script:
-    - java -version
-    - mvn -version
+    - echo "Verificações básicas executadas com sucesso"
 
 clean:
   tags:
@@ -47,5 +43,4 @@ deploy:
     - Shell-Maven
   stage: deploy
   script:
-    # Coloque aqui os comandos de implantação do seu aplicativo
     - echo "Implantação do aplicativo aqui"
