@@ -10,7 +10,7 @@ stages:
   - deploy
 
 before_script:
-  - set "PATH=%JAVA_HOME%\\bin;%MAVEN_HOME%\\bin;%PATH%"
+  - $env:PATH="$env:JAVA_HOME\bin;$env:MAVEN_HOME\bin;$env:PATH"
   - java -version
   - mvn -version
 
