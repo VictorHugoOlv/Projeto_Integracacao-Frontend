@@ -1,26 +1,48 @@
 image: maven:3.6.3-jdk-8
 
 stages:
+  - check
   - clean
   - package
+  - deploy
 
-before_script:
-  - echo "Iniciando pipeline Spring Boot"
-  - echo $MAVEN_VERSION
-  - echo $MAVEN_HOME
-  - echo $JAVA_HOME
-  - apt-get update
-  - apt-get install -y openjfx
+#before_script:
+  #- echo "Iniciando pipeline Spring Boot"
+  #- echo $MAVEN_VERSION
+  #- echo $MAVEN_HOME
+  #- echo $JAVA_HOME
+  #- apt-get update
+  #- apt-get install -y openjfx
+
+check:
+  tags:
+    - Shell-Maven
+  stage: check
+  script:
+    - java -version
+    - mvn -version
 
 clean:
+  tags:
+    - Shell-Maven
   stage: clean
   script:
     - mvn clean 
 
 package:
+  tags:
+    - Shell-Maven
   stage: package
   script:
     - mvn package -DskipTests
   artifacts:
     paths:
       - target/jfx/native/*.exe
+
+deploy:
+  tags:
+    - Shell-Maven
+  stage: deploy
+  script:
+    # Coloque aqui os comandos de implantação do seu aplicativo
+    - echo "Implantação do aplicativo aqui"
