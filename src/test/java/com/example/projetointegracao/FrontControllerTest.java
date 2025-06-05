@@ -82,4 +82,14 @@ public class FrontControllerTest {
         assertEquals("categoria1", root.getChildren().get(0).getValue());
         assertEquals("produto1", root.getChildren().get(0).getChildren().get(0).getValue());
     }
+
+    @Test
+    @DisplayName("Garantir que o TitledPane fique habilitado")
+    void showCategoriesWithProductsTest() {
+        frontController.showCategoriesWithProducts();
+
+        assertFalse(frontController.modelsTitledPane.isDisabled());
+        assertTrue(frontController.modelsTitledPane.isExpanded());
+    }
+
 }
