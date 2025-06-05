@@ -61,6 +61,19 @@ public class FrontControllerTest {
     }
 
     @Test
+    @DisplayName("Caso de nenhuma linha selecionada")
+    void onItemSelectedLineComboNullTest() {
+        LineDTO lineNullId = new LineDTO();
+        lineNullId.setId(null);
+
+        frontController.lineComboBox.getSelectionModel().select(lineNullId);
+
+        frontController.onItemSelectedLineCombo();
+
+        verifyNoInteractions(categoryService);
+    }
+
+    @Test
     @DisplayName("Garantir que a linha selecionada retorne seus respectivos componentes")
     void onItemSelectedLineComboTest(){
         LineDTO selectedLine = new LineDTO(1L, "linha1");
