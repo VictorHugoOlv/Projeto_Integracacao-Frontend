@@ -18,13 +18,13 @@ public class FrontController {
     List<LineDTO> lines;
 
     @FXML
-    private TreeView<String> categoriesWithProductsTreeView;
+    public TreeView<String> categoriesWithProductsTreeView;
 
     @FXML
-    private TitledPane modelsTitledPane;
+    public TitledPane modelsTitledPane;
 
     @FXML
-    private ComboBox<LineDTO> lineComboBox;
+    public ComboBox<LineDTO> lineComboBox;
 
     @FXML
     public void initialize() {
