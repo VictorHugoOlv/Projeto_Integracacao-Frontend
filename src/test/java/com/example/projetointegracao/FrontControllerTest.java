@@ -92,4 +92,19 @@ public class FrontControllerTest {
         assertTrue(frontController.modelsTitledPane.isExpanded());
     }
 
+    @Test
+    @DisplayName("Garantir que a TreeView esteja sendo construída corretamente")
+    void buildCategoryProductTreeTest(){
+        CategoryDTO category =
+                new CategoryDTO(10L, "categoria1", 1L, Arrays.asList
+                        (new ProductDTO(100L,"produto1",10L)));
+
+        frontController.buildCategoryProductTree(Arrays.asList(category));
+
+        TreeItem<String> root = frontController.categoriesWithProductsTreeView.getRoot();
+        assertEquals("Categorias com Produtos", root.getValue());
+        assertEquals("categoria1", root.getChildren().get(0).getValue());
+        assertEquals("produto1", root.getChildren().get(0).getChildren().get(0).getValue());
+    }
+
 }
