@@ -23,6 +23,7 @@ import org.testfx.framework.junit5.ApplicationExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,8 +57,10 @@ public class FrontControllerTest {
 
         frontController.initialize();
 
-        assertEquals(1, frontController.lineComboBox.getItems().size());
-        assertEquals("linha1", frontController.lineComboBox.getItems().get(0).getName());
+        assertEquals("Verify if the size of lineCombobox is the same as the lineDTOList",
+                1, frontController.lineComboBox.getItems().size());
+        assertEquals("Verify the Line Names are being preserved",
+                "linha1", frontController.lineComboBox.getItems().get(0).getName());
     }
 
     @Test
@@ -91,9 +94,12 @@ public class FrontControllerTest {
         assertTrue(frontController.modelsTitledPane.isExpanded());
 
         TreeItem<String> root = frontController.categoriesWithProductsTreeView.getRoot();
-        assertEquals("Categorias com Produtos", root.getValue());
-        assertEquals("categoria1", root.getChildren().get(0).getValue());
-        assertEquals("produto1", root.getChildren().get(0).getChildren().get(0).getValue());
+        assertEquals("()Verify if the test gets the root value",
+                "Categorias com Produtos", root.getValue());
+        assertEquals("Verify if the test gets the Category Name correctly",
+                "categoria1", root.getChildren().get(0).getValue());
+        assertEquals("Verify if the test gets the Product Name correctly",
+                "produto1", root.getChildren().get(0).getChildren().get(0).getValue());
     }
 
     @Test
@@ -115,9 +121,12 @@ public class FrontControllerTest {
         frontController.buildCategoryProductTree(Arrays.asList(category));
 
         TreeItem<String> root = frontController.categoriesWithProductsTreeView.getRoot();
-        assertEquals("Categorias com Produtos", root.getValue());
-        assertEquals("categoria1", root.getChildren().get(0).getValue());
-        assertEquals("produto1", root.getChildren().get(0).getChildren().get(0).getValue());
+        assertEquals("Verify if the test gets the root value",
+                "Categorias com Produtos", root.getValue());
+        assertEquals("Verify if the test gets the Category Name correctly",
+                "categoria1", root.getChildren().get(0).getValue());
+        assertEquals("Verify if the test gets the Product Name correctly",
+                "produto1", root.getChildren().get(0).getChildren().get(0).getValue());
     }
 
 }
