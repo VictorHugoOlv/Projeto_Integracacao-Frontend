@@ -12,7 +12,6 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -50,7 +49,6 @@ public class FrontControllerTest {
     }
 
     @Test
-    @DisplayName("Garantir que a ComboBox está sendo preenchida corretamente")
     void initializeTest() {
         List<LineDTO> lineDTOList = Arrays.asList(new LineDTO(1L, "linha1"));
         when(lineService.getAllLines()).thenReturn(lineDTOList);
@@ -64,7 +62,6 @@ public class FrontControllerTest {
     }
 
     @Test
-    @DisplayName("Caso de nenhuma linha selecionada")
     void onItemSelectedLineComboNullTest() {
         LineDTO lineNullId = new LineDTO();
         lineNullId.setId(null);
@@ -77,7 +74,6 @@ public class FrontControllerTest {
     }
 
     @Test
-    @DisplayName("Garantir que a linha selecionada retorne seus respectivos componentes")
     void onItemSelectedLineComboTest(){
         LineDTO selectedLine = new LineDTO(1L, "linha1");
         frontController.lineComboBox.setItems(FXCollections.observableArrayList(selectedLine));
@@ -103,7 +99,6 @@ public class FrontControllerTest {
     }
 
     @Test
-    @DisplayName("Garantir que o TitledPane fique habilitado")
     void showCategoriesWithProductsTest() {
         frontController.showCategoriesWithProducts();
 
@@ -112,7 +107,6 @@ public class FrontControllerTest {
     }
 
     @Test
-    @DisplayName("Garantir que a TreeView esteja sendo construída corretamente")
     void buildCategoryProductTreeTest(){
         CategoryDTO category =
                 new CategoryDTO(10L, "categoria1", 1L, Arrays.asList
