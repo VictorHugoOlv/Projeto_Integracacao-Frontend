@@ -33,7 +33,7 @@ package:
     - Shell-Maven
   stage: package
   script:
-    - mvn package -DskipTests
+    - mvn package
   artifacts:
     paths:
       - target/jfx/native/*.exe
