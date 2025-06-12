@@ -18,20 +18,20 @@ public class FrontController {
     List<LineDTO> lines;
 
     @FXML
-    private TreeView<String> categoriesWithProductsTreeView;
+    public TreeView<String> categoriesWithProductsTreeView;
 
     @FXML
-    private TitledPane modelsTitledPane;
+    public TitledPane modelsTitledPane;
 
     @FXML
-    private ComboBox<LineDTO> lineComboBox;
+    public ComboBox<LineDTO> lineComboBox;
 
     @FXML
     public void initialize() {
         setComboBoxLine();
     }
 
-    private void setComboBoxLine() {
+    public void setComboBoxLine() {
 
         lines = lineService.getAllLines();
 
@@ -40,7 +40,7 @@ public class FrontController {
         lineComboBox.setOnAction(event -> onItemSelectedLineCombo());
     }
 
-    private void onItemSelectedLineCombo() {
+    public void onItemSelectedLineCombo() {
 
         Long selectedLine = lineComboBox
                 .getSelectionModel()
@@ -53,12 +53,12 @@ public class FrontController {
         }
     }
 
-    private void showCategoriesWithProducts() {
+    public void showCategoriesWithProducts() {
         modelsTitledPane.setDisable(false);
         modelsTitledPane.setExpanded(true);
     }
 
-    private void buildCategoryProductTree(List<CategoryDTO> categories) {
+    public void buildCategoryProductTree(List<CategoryDTO> categories) {
 
         TreeItem<String> root = new TreeItem<>("Categorias com Produtos");
         root.setExpanded(true);
